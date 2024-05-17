@@ -1,5 +1,6 @@
 <template>
     <div class="bg-white flex flex-col w-1/5" id="navbar">
+    
         <h1 class="py-3 text-xl font-medium">
             Filter
         </h1>

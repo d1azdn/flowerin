@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import Topbar from './components/Topbar.vue'
 import Navbar from './components/Navbar.vue'
+import Dashboard from './components/Dashboard.vue'
 //import HelloWorld from './components/HelloWorld.vue'
 //ini taruh di template<HelloWorld msg="Vite + Vue" />
 </script>
 
 <template>
-  <div class="mx-12 mt-6">
+  <Topbar/>
+  <div class="mx-12 mt-6 flex flex-row">
     <Navbar/>
+    <Dashboard/>
   </div>
 </template>
 
