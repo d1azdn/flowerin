@@ -2,6 +2,8 @@
 import Topbar from './components/Topbar.vue'
 import Navbar from './components/Navbar.vue'
 import Dashboard from './components/Dashboard.vue'
+import Cart from './components/Cart.vue'
+import About from './components/About.vue'
 //import HelloWorld from './components/HelloWorld.vue'
 //ini taruh di template<HelloWorld msg="Vite + Vue" />
 </script>
@@ -10,7 +12,7 @@ import Dashboard from './components/Dashboard.vue'
   <Topbar/>
   <div class="mx-12 mt-6 flex flex-row">
     <Navbar/>
-    <Dashboard/>
+    <About/>
   </div>
 </template>
 
