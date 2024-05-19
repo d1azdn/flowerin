@@ -12,23 +12,33 @@ export default defineComponent({
             itemlist : [
                 {
                     price:5,
-                    text:'Bunga mawar - satuan / per tangkai'
+                    text:'Bunga mawar - satuan / per tangkai',
+                    url:'/src/assets/mawar.jpg'
                 },
                 {
                     price:6,
-                    text:'Bunga melati - satuan / per tangkai'
+                    text:'Bunga melati - satuan / per tangkai',
+                    url:'/src/assets/melati.jpg'
+                },
+                {
+                    price:22,
+                    text:'Bouqette wisuda polosan',
+                    url:'/src/assets/bouqet-normal.jpg'
                 },
                 {
                     price:35,
-                    text:'Bouqette wisuda + coklat silverqueen'
+                    text:'Bouqette wisuda + coklat silverqueen',
+                    url:'/src/assets/bouqet-silver.jpeg'
                 },
                 {
                     price:40,
-                    text:'Bouqette wisuda + snack ringan'
+                    text:'Bouqette wisuda + snack ringan',
+                    url:'/src/assets/bouqet-snack.jpg'
                 },
                 {
                     price:60,
-                    text:'Bouqette wisuda + Uang tunai 20ribu x2'
+                    text:'Bouqette wisuda + Uang tunai 20ribu x2',
+                    url:'/src/assets/bouqet-uang.jpg'
                 }
             ],
             searchText : ''
@@ -60,6 +70,7 @@ export default defineComponent({
         }
     }
 })
+
 </script>
 
 <template>
@@ -76,7 +87,7 @@ export default defineComponent({
     </div>
     <div class="content grid-cols-5 grid mt-8 gap-3">
         <div class="card" v-for="items in filteredList()" v-show="items.price < prices" @click="confirmBuy(items.text, items.price)">
-            <Items :title="items.text" :price="items.price"/>
+            <Items :title="items.text" :price="items.price" :url="items.url"/>
         </div>
     </div>
     
