@@ -5,34 +5,28 @@ import { defineComponent } from 'vue';
 </script>
 
 <script lang="ts">
-
 export default defineComponent({
     props : ['prices'],
     data(){
         return{
             itemlist : [
                 {
-                    title:'bungamawar',
                     price:5,
                     text:'Bunga mawar - satuan / per tangkai'
                 },
                 {
-                    title:'bungamelati',
                     price:6,
                     text:'Bunga melati - satuan / per tangkai'
                 },
                 {
-                    title:'bouqettewisuda',
                     price:35,
                     text:'Bouqette wisuda + coklat silverqueen'
                 },
                 {
-                    title:'bouqettewisuda',
                     price:40,
                     text:'Bouqette wisuda + snack ringan'
                 },
                 {
-                    title:'bouqettewisuda',
                     price:60,
                     text:'Bouqette wisuda + Uang tunai 20ribu x2'
                 }
@@ -42,13 +36,34 @@ export default defineComponent({
     },
     methods: {
         filteredList() {
-            return this.itemlist.filter(data => data.title.toLowerCase().includes(this.searchText.toLowerCase()))
+            return this.itemlist.filter(data => data.text.toLowerCase().includes(this.searchText.toLowerCase()))
+        },
+        confirmBuy(text:string, price:number){
+            var database = JSON.parse(sessionStorage.getItem('items')|| '[]')
+            var unique = true
+            for (let i = 0; i < database.length; i++){
+                if (database[i].text == text){
+                    database[i].quantity += 1
+                    unique = false
+                }
+            }
+            if (unique){
+                var data = {
+                'price' : price,
+                'text' : text,
+                'quantity' : 1
+                }
+                database.push(data)
+            }
+            sessionStorage.setItem('items', JSON.stringify(database));
+            this.$emit('confirm','dashboard')
         }
     }
 })
 </script>
 
 <template>
+
 <div class="ml-8 w-full">
     <h1 class="py-3 text-xl font-medium">
         Cari produk anda disini</h1>
@@ -60,7 +75,7 @@ export default defineComponent({
         </form>
     </div>
     <div class="content grid-cols-5 grid mt-8 gap-3">
-        <div class="card" v-for="items in filteredList()" v-show="items.price < prices">
+        <div class="card" v-for="items in filteredList()" v-show="items.price < prices" @click="confirmBuy(items.text, items.price)">
             <Items :title="items.text" :price="items.price"/>
         </div>
     </div>

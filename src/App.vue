@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Topbar from './pages/components/Topbar.vue'
 import Navbar from './pages/components/Navbar.vue'
+import Confirm from './pages/components/Confirm.vue'
 import Dashboard from './pages/Dashboard.vue'
 import Cart from './pages/Cart.vue'
 import About from './pages/About.vue'
@@ -16,6 +17,9 @@ export default defineComponent({
         return{
             price : 200,
             menu : 'dashboard',
+            confirmation : false,
+            confirmTitle : 'Selesai !',
+            confirmText : 'Item telah masuk kedalam keranjang.'
         }
     },
     methods: {
@@ -24,32 +28,34 @@ export default defineComponent({
         },
         menuChange(menus:string){
           this.menu = menus
+        },
+        confirmMenu(text:string){
+          this.confirmation = true
+          if (text == 'dashboard'){
+            this.confirmTitle = 'Selesai !'
+            this.confirmText = 'Item telah masuk kedalam keranjang.'
+          } else {
+            this.confirmTitle = 'Pembelian sukses !'
+            this.confirmText = 'Terimakasih telah berbelanja di kami.'
+          }
+        },
+        hideConfirm(){
+          this.confirmation = false
         }
     }
 })
 </script>
 
 <template>
+  <Confirm v-show="confirmation" @hide="hideConfirm" :title="confirmTitle" :text="confirmText"/>
   <Topbar/>
   <div class="mx-12 mt-6 flex flex-row">
     <Navbar @price="priceChange" @menu="menuChange"/>
-    <Dashboard v-show="menu=='dashboard'" :prices="price"/>
-    <Cart v-show="menu=='cart'"/>
+    <Dashboard v-show="menu=='dashboard'" :prices="price" @confirm="confirmMenu"/>
+    <Cart v-show="menu=='cart'" @confirm="confirmMenu"/>
     <About v-show="menu=='about'"/>
   </div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<style>
 </style>
