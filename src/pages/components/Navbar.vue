@@ -1,5 +1,9 @@
 <template>
     <div class="bg-white flex flex-col w-1/5" id="navbar">
+        
+        <button class="border-2 border-green-500 rounded-full py-2 text-black w-3/4 font-semibold shadow-md shadow-green-100" @click="removeLoad()">
+            <- Back to hero
+        </button>
     
         <h1 class="py-3 text-xl font-medium">
             Filter
@@ -70,6 +74,10 @@
             menuChange(menu:string){ 
                 this.menu = menu;
                 this.$emit('menu', this.menu)
+            },
+            removeLoad(){
+                sessionStorage.setItem('load','0')
+                window.location.reload()
             }
         }
     })

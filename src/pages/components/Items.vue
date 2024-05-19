@@ -20,7 +20,6 @@ export default defineComponent({
     props : ['title', 'price', 'url'],
     data(){
         return{
-
         }
     },
     methods: {

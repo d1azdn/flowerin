@@ -13,32 +13,32 @@ export default defineComponent({
                 {
                     price:5,
                     text:'Bunga mawar - satuan / per tangkai',
-                    url:'/src/assets/mawar.jpg'
+                    url:'/flowerin/assets/mawar.jpg'
                 },
                 {
                     price:6,
                     text:'Bunga melati - satuan / per tangkai',
-                    url:'/src/assets/melati.jpg'
+                    url:'/flowerin/assets/melati.jpg'
                 },
                 {
                     price:22,
                     text:'Bouqette wisuda polosan',
-                    url:'/src/assets/bouqet-normal.jpg'
+                    url:'/flowerin/assets/bouqet-normal.jpg'
                 },
                 {
                     price:35,
                     text:'Bouqette wisuda + coklat silverqueen',
-                    url:'/src/assets/bouqet-silver.jpeg'
+                    url:'/flowerin/assets/bouqet-silver.jpeg'
                 },
                 {
                     price:40,
                     text:'Bouqette wisuda + snack ringan',
-                    url:'/src/assets/bouqet-snack.jpg'
+                    url:'/flowerin/assets/bouqet-snack.jpg'
                 },
                 {
                     price:60,
                     text:'Bouqette wisuda + Uang tunai 20ribu x2',
-                    url:'/src/assets/bouqet-uang.jpg'
+                    url:'/flowerin/assets/bouqet-uang.jpg'
                 }
             ],
             searchText : ''

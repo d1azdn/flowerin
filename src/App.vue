@@ -10,6 +10,8 @@ import About from './pages/About.vue'
 </script>
 
 <script lang="ts">
+let loadPages = sessionStorage.getItem('load' || [])
+
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -22,7 +24,7 @@ export default defineComponent({
             confirmText : 'Item telah masuk kedalam keranjang.',
             loadingState : false,
             loadingState1 : false,
-            main : false,
+            main : loadPages,
         }
     },
     methods: {
@@ -46,6 +48,7 @@ export default defineComponent({
           this.confirmation = false
         },
         loadingAnimation(){
+          sessionStorage.setItem('load','1')
           this.loadingState = true
           setTimeout(()=> {
             this.loadingState = false
@@ -53,7 +56,7 @@ export default defineComponent({
           }, 3000)
           this.loadingState1 = false
           setTimeout(()=>{
-            this.main = true
+            this.main = '1'
           }, 3000)
         }
     }
@@ -61,7 +64,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="pb-20" v-show="main">
+  <div class="pb-20" v-show="main=='1'">
 
     <div class="loadingin w-full h-full text-center flex fixed justify-center content-center items-center bg-green-500 z-30" style="animation: slideOut 1s forwards;" v-if="loadingState1">
       <p class="text-8xl text-white">Loading..</p>
@@ -98,7 +101,7 @@ export default defineComponent({
 
   </div>
     
-    <div class="area" v-if="!loadingState1">
+    <div class="area" v-if="main!='1'">
       <ul class="circles">
         <li></li>
         <li></li>
