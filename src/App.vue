@@ -1,18 +1,41 @@
 <script setup lang="ts">
-import Topbar from './components/Topbar.vue'
-import Navbar from './components/Navbar.vue'
-import Dashboard from './components/Dashboard.vue'
-import Cart from './components/Cart.vue'
-import About from './components/About.vue'
+import Topbar from './pages/components/Topbar.vue'
+import Navbar from './pages/components/Navbar.vue'
+import Dashboard from './pages/Dashboard.vue'
+import Cart from './pages/Cart.vue'
+import About from './pages/About.vue'
 //import HelloWorld from './components/HelloWorld.vue'
 //ini taruh di template<HelloWorld msg="Vite + Vue" />
+</script>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    data(){
+        return{
+            price : 10,
+            menu : 'dashboard',
+        }
+    },
+    methods: {
+        priceChange(prices:number){
+          this.price = prices
+        },
+        menuChange(menus:string){
+          this.menu = menus
+        }
+    }
+})
 </script>
 
 <template>
   <Topbar/>
   <div class="mx-12 mt-6 flex flex-row">
-    <Navbar/>
-    <About/>
+    <Navbar @price="priceChange" @menu="menuChange"/>
+    <Dashboard v-show="menu=='dashboard'"/>
+    <Cart v-show="menu=='cart'"/>
+    <About v-show="menu=='about'"/>
   </div>
 </template>
 
