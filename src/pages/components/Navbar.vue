@@ -46,11 +46,11 @@
             return{
                 pricelist : 
                 { 
-                0: 'All',
-                10:'< Rp. 10,000',
-                25:'< Rp. 25,000',
-                50:'< Rp. 50,000',
-                100:'< Rp. 100,000'},
+                    10:'< Rp. 10,000',
+                    25:'< Rp. 25,000',
+                    50:'< Rp. 50,000',
+                    100:'< Rp. 100,000', 
+                    200: 'All'},
 
                 menulist : {
                     'dashboard' : 'Dashboard',
@@ -58,7 +58,7 @@
                     'about' : 'About'
                 },
 
-                price : 0,
+                price : 200,
                 menu : 'dashboard',
             }
         },

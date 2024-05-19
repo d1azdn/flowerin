@@ -13,12 +13,6 @@
         </div>
 </template>
 
-<style scoped lang="postcss">
-.card {
-    @apply shadow-sm border-2 rounded-md hover:shadow-md hover:shadow-green-300 hover:cursor-pointer
-}
-</style>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 

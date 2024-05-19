@@ -14,7 +14,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
     data(){
         return{
-            price : 10,
+            price : 200,
             menu : 'dashboard',
         }
     },
@@ -33,7 +33,7 @@ export default defineComponent({
   <Topbar/>
   <div class="mx-12 mt-6 flex flex-row">
     <Navbar @price="priceChange" @menu="menuChange"/>
-    <Dashboard v-show="menu=='dashboard'"/>
+    <Dashboard v-show="menu=='dashboard'" :prices="price"/>
     <Cart v-show="menu=='cart'"/>
     <About v-show="menu=='about'"/>
   </div>

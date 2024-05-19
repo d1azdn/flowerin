@@ -7,6 +7,7 @@ import { defineComponent } from 'vue';
 <script lang="ts">
 
 export default defineComponent({
+    props : ['prices'],
     data(){
         return{
             itemlist : [
@@ -35,11 +36,13 @@ export default defineComponent({
                     price:60,
                     text:'Bouqette wisuda + Uang tunai 20ribu x2'
                 }
-            ]
+            ],
+            searchText : ''
         }
     },
     methods: {
-        turnOn(){ 
+        filteredList() {
+            return this.itemlist.filter(data => data.title.toLowerCase().includes(this.searchText.toLowerCase()))
         }
     }
 })
@@ -52,12 +55,12 @@ export default defineComponent({
     <div class="search flex flex-row">
         <form action="javascript:;" class="w-full flex flex-row" onsubmit="">
             <img src="/src/assets/Logo-black.png" class="w-12 mr-4" alt="">
-            <input class="w-5/6 rounded-full px-5 py-1 border-2" type="text" name="text-input" id="text-input" placeholder="Write your text here.">
+            <input class="w-5/6 rounded-full px-5 py-1 border-2" type="text" name="text-input" id="text-input" placeholder="Cari produk anda disini." v-model="searchText">
             <input class="w-1/6 ml-4 bg-green-500 rounded-full py-1 px-8 font-semibold text-white hover:cursor-pointer" type="submit" name="submit" id="submit" value="Search">
         </form>
     </div>
     <div class="content grid-cols-5 grid mt-8 gap-3">
-        <div class="card" v-for="items in itemlist">
+        <div class="card" v-for="items in filteredList()" v-show="items.price < prices">
             <Items :title="items.text" :price="items.price"/>
         </div>
     </div>
